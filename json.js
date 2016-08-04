@@ -1,15 +1,14 @@
 'use strict'
 let req=require('superagent');
-var headers = {
-    'abc':'footbar'
-};
 req
-    .post('localhost:5000/')
-    .set(headers)
+    .post('localhost:2050/users')
+    .type('form')
+    .set('Content-Type','application/json')
+    .send('{"input":"ok"}')
     .end(function (err, res) {
         
         if (res.statusCode === 200) {
-            console.log("right "+headers['abc']);
+            console.log("right "+res.text);
         }
         else {
             console.log("error ");
